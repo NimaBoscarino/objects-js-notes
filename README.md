@@ -2,7 +2,7 @@
 
 Note: Today's notes are adapted partly from [David Mill's notes](https://github.com/daegren/lhl-mar4-w1d3-objects) and [Don Burks' notes](https://web.compass.lighthouselabs.ca/activities/116/lectures/2296).
 
-Also note!! The code that we wrote is inside of the `notes.md` file, and the `getFriends.js` file which is found [on the GitHub repo]().
+Also note!! The code that we wrote is inside of the `notes.md` file, and the `getFriends.js` file which is found [on the GitHub repo](https://github.com/NimaBoscarino/objects-js-notes).
 
 ## Goal:
 
