@@ -2,9 +2,7 @@
 
 Note: Today's notes are adapted partly from [David Mill's notes](https://github.com/daegren/lhl-mar4-w1d3-objects) and [Don Burks' notes](https://web.compass.lighthouselabs.ca/activities/116/lectures/2296).
 
-This file is also available with more (old) examples [on the GitHub repo](https://github.com/NimaBoscarino/objects-js-notes).
-
-I did NOT talk about how objects are "passed by reference" to functions, but that is something that I want you to explore. Please take a look at the section of the notes called "Pass-by-value vs. Pass-by-reference" and mess around with the example using your Node REPL. If you're having trouble understanding it, please let me (or a mentor) know! We can give you a demonstration.
+Also note!! The code that we wrote is inside of the `notes.md` file, and the `getFriends.js` file which is found [on the GitHub repo](https://github.com/NimaBoscarino/objects-js-notes).
 
 ## Goal:
 
@@ -14,12 +12,24 @@ Particular Topics:
 
 - Objects
 - Primitive data types
-- How data is passed to functions <-- not in lecture!
+- How data is passed to functions
 - Using `this` (aka Context) when inside an object's function (method!)
 
-## Falsy and Truthy values
+## Review of Primitives
 
-When you pass a value into an if-condition, the value puts on a "True" or "False" disguise.
+String - "Hello", "banana", 'apple', "This sentence is false."
+
+Number - 1, 378643, 2e5, 0xFF
+
+Boolean - true, false
+
+There are many other falsey values: undefined, null, NaN, the number 0 and empty strings. Everything else will evaluate to true inside an if statement.
+
+Array - [1000, "This sentence isn't true", [4, 5, 6], "wat?"]
+
+How do I find the type of something? `typeof(...)`
+
+Heads up! There are certain values that act _like_ `false` in `if` conditions.
 
 ### Falsy Values:
 
@@ -49,136 +59,23 @@ I want to be able to update/edit this info.
 I also want to be able to access values with dynamic keys. (User input, or through a loop, etc etc)
 ```
 
-### Motivation
-
-Here's an example of storing data as an array vs as nested objects. NOTE! This is a _complicated_ example to prove a point.
-
-```js
-
-var my_jams = [
-  'power_kanye_west_mdbtf.mp3',
-  'spaceship_kanye_west.mp3',
-  'two_word_kanye_west.mp3',
-  'babye_one_more_time_britney_spears.mp3',
-  'umi_says_mos_def.mp3',
-  'wanna_be_spice_girls.mp3',
-];
-
-// get all the kanye west songs??????
-
-
-// make a for loop to go through everything, see if they have
-// the "substring" "Kanye West", and then push those to a new array
-
-// An OBJECT!
-
-var my_jams = {
-  kanye_west: {
-    college_dropout: [
-      'spaceship_kanye_west_college_dropout.mp3',
-      'two_word_kanye_west_college_dropout.mp3',
-    ],
-    mbdtf: ['power_kanye_west_mdbtf.mp3'],
-    yeezus: ['i_am_a_god_kanye_west_yeezus.mp3']
-  },
-
-  mos_def: [
-    'umi_says_mos_def.mp3',
-  ],
-
-  spice_girls: [
-    'wanna_be_spice_girls.mp3', 
-  ],
-
-  britney_spears: [
-    'babye_one_more_time_britney_spears.mp3',
-  ]
-}
-```
-
-### Smaller Examples
-
-
-```js
-var someNewObject = {}; // empty object
-
-var meal_array = ['Long Island Iced Tea', 'Brussel Sprouts', 'Veggie Burger', 'Chocolate Mousse']
-
-var nima_drink = 'Long Island Iced Tea'
-var nima_appetizer = 'Brussel Sprouts'
-var nima_main = 'Veggie Burger'
-var nima_dessert = 'Chocolate Mousse'
-
-var kanye_drink = 'Mojito'
-var kanye_appetizer = 'Garlic Fries'
-var kanye_main = 'Fish Filet'
-var kanye_dessert = 'Croissants'
-
-var meal = {
-  drink: 'Long Island Iced Tea',
-  appetizer: 'Brussel Sprouts',
-  main: 'Veggie Burger',
-  dessert: 'Chocolate Mousse'
-}
-
-
-var nima_meal = {
-  drink: 'Long Island Iced Tea',
-  appetizer: 'Brussel Sprouts',
-  main: 'Veggie Burger',
-  dessert: 'Chocolate Mousse'
-}
-
-var kanye_meal = {
-  drink: 'Mojito',
-  appetizer: 'Garlic Fries',
-  main: 'Fish Filet',
-  dessert: 'Croissants'
-};
-
-var thingToGet = 'main';
-
-console.log(nima_meal[thingToGet])
-console.log(kanye_meal[thingToGet])
-
-// The KEYS are DRINK, APPETIZER, MAIN, DESSERT
-// Note, caps is for emphasis
-
-// The VALUES are opposite of the keys
-
-meal.drink // Long Island
-meal['drink']
-```
-
-### Things we can do with Objects
-
-#### Read Values
-
 I can access the data in an object in two ways: dot notation:
 
 ```js
-meal.drink
-meal['drink']
+job.role = "Web Instructor";
 ```
-#### Edit Values
+
+or Bracket notation:
 
 ```js
-meal.drink = 'Hot Chocolate'
-meal['drink'] = 'Fizzy Water'
-````
+job["friends"]
+```
 
-#### Add Values
-
-```js
-meal.salad = 'Greek Salad'
-meal['salad'] = 'Caesar Salad'
-````
-
-#### In General
+- "Look up" - The action we do when we use a dictionary
+- We access properties using the `.` operator, as a property lookup
+- We can use the `[]` syntax to access properties
 
 The `.` is appropriate when we know the name of the property when we are writing the code. We use the `[]` if the property name is variable / dynamic
-
-#### Nested Objects
 
 We can have more complicated objects! Nested data, aka Complex Data Objects:
 
@@ -186,22 +83,6 @@ We can have more complicated objects! Nested data, aka Complex Data Objects:
 - Objects in Objects
 - Arrays of Object in Objects
 - etc.
-
-See the Kanye object in the my_jams example way up above!
-
-```js
-var artist = 'kanye_west'
-var album = 'college_dropout'
-
-var firstSong = my_jams.kanye_west.college_dropout[0]
-
-var firstSong = my_jams[artist][album][0]
-var secondSong = my_jams[artist][album][1]
-
-var theArtist = my_jams[artist]
-var theAlbum = theArtist[album]
-var firstSong = theAlbum[0]
-```
 
 ## Pass-by-value vs. Pass-by-reference, tricky bits!
 
